@@ -19,7 +19,7 @@ extension TodoListTableViewController {
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let task = taskManager.allTasks()[indexPath.row]
+		let task = taskManager.getTaskForIndex(indexPath)
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 		configureCell(cell, with: task)
 		return cell
@@ -30,10 +30,6 @@ private extension TodoListTableViewController {
 
 	private func setup() {
 		self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-	}
-
-	func getTaskForIndex(_ indexPath: IndexPath) -> Task {
-		taskManager.allTasks()[indexPath.row]
 	}
 
 	func configureCell(_ cell: UITableViewCell, with task: Task) {
